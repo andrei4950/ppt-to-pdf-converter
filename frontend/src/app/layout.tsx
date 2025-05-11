@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'PowerPoint optimizer - SlideSpeak',
-  description: 'Reduce the size of your PowerPoint file without losing quality.',
+  title: 'PowerPoint to PDF convertor - SlideSpeak',
+  description: 'Convert Powerpoint to PDF',
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => (

@@ -2,10 +2,17 @@ import os
 import uuid
 import shutil
 from flask import Flask, request, jsonify, redirect
+from flask_cors import CORS
 from converter import convert_pptx_to_pdf
 import boto3
 
 app = Flask(__name__)
+
+CORS(
+    app,
+    resources={r"/*": {"origins": "http://localhost:3000"}},
+    supports_credentials=True,
+)
 
 # Simple in-memory store; TODO: for production use a real DB
 jobs = {}
