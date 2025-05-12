@@ -35,7 +35,7 @@ const ChooseFileStep: FC = () => {
         <p className="text-sm text-gray-600">
           {isDragActive
             ? "Drop your .pptx here…"
-            : "Drag & drop a PowerPoint file (.pptx) to convert."}
+            : "Drag & drop a PowerPoint file (.pptx) to convert to PDF."}
         </p>
         <button
           type="button"

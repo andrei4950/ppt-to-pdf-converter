@@ -3,7 +3,6 @@ services:
     image: libreofficedocker/libreoffice-unoserver:3.19-9c28c22
     ports:
       - "2004:2004"    # REST API
-      - "2002:2002"    # unoconv socket if needed
 
   backend:
     build:
@@ -13,10 +12,22 @@ services:
     volumes:
       - ./backend:/app
     env_file:
-      - .env
+      - .env              # AWS creds
     depends_on:
       - unoserver
     environment:
       # point the converter at the unoserver container:
       UNOSERVER_ADDR: "unoserver:2004"
-      # (and your AWS env vars or add an env_file)
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env.local        # NEXT_PUBLIC_API_URL, any other FRONTEND_ vars
+    depends_on:
+      - backend
+    environment:
+      NODE_ENV: development
+      NEXT_PUBLIC_API_URL: "http://localhost:5001"
